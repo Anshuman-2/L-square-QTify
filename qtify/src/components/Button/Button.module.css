@@ -1,0 +1,28 @@
+/* src/components/Button/Button.module.css */
+
+/* Use CSS Variables (important for test cases) */
+:root {
+  --qtify-green: #34c94b;
+  --qtify-black: #000000;
+}
+
+.button {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--qtify-black);
+  color: var(--qtify-green);
+
+  padding: 8px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--qtify-green);
+
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
