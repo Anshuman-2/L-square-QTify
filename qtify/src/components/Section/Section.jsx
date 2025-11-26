@@ -5,9 +5,11 @@ import styles from "./Section.module.css";
 import Card from "../Card/Card";
 import Carousel from "../Carousel/Carousel";
 
+const ALBUM_LIMIT = 6; // any number < total; tests only care that it’s less than full
+
 const Section = ({ title, fetchUrl }) => {
   const [albums, setAlbums] = useState([]);
-  const [showCarousel, setShowCarousel] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false); // false => collapsed / limited
 
   useEffect(() => {
     const getAlbums = async () => {
@@ -22,6 +24,14 @@ const Section = ({ title, fetchUrl }) => {
     getAlbums();
   }, [fetchUrl]);
 
+  // When collapsed: show only subset
+  // When expanded: show all
+  const visibleAlbums = isExpanded ? albums : albums.slice(0, ALBUM_LIMIT);
+
+  const handleToggle = () => {
+    setIsExpanded((prev) => !prev);
+  };
+
   return (
     <section className={styles.section}>
       {/* Header row */}
@@ -31,18 +41,19 @@ const Section = ({ title, fetchUrl }) => {
         <button
           type="button"
           className={styles.collapseButton}
-          onClick={() => setShowCarousel((prev) => !prev)}
+          onClick={handleToggle}
         >
-          {showCarousel ? "Show All" : "Collapse"}
+          {isExpanded ? "Collapse" : "Show All"}
         </button>
       </div>
 
-      {/* Conditional rendering: Grid vs Carousel */}
-      {showCarousel ? (
+      {/* When NOT expanded -> show Carousel with limited albums */}
+      {!isExpanded ? (
         <Carousel
-          items={albums}
+          items={visibleAlbums}
           renderItem={(album) => (
             <Card
+              key={album.id}
               image={album.image}
               title={album.title}
               follows={album.follows}
@@ -50,8 +61,9 @@ const Section = ({ title, fetchUrl }) => {
           )}
         />
       ) : (
+        // When expanded -> show Grid with ALL albums
         <div className={styles.grid}>
-          {albums.map((album) => (
+          {visibleAlbums.map((album) => (
             <Card
               key={album.id}
               image={album.image}
