@@ -1,9 +1,39 @@
+/* src/components/Navbar/Navbar.module.css */
+
 .navbar {
-  background-color: var(--color-primary);
-  height: 74px;
-  width: 100vw;
-  padding: 0px 32px;
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  background-color: var(--color-primary);
+  padding: 12px 32px;
+}
+
+/* Left: logo */
+.left {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Center: search bar */
+.center {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  padding: 0 32px; /* Space between logo and button */
+}
+
+/* Right: Give Feedback button */
+.right {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Optional: prevent button from sticking to extreme right */
+.right button {
+  margin-right: 8px;
 }
