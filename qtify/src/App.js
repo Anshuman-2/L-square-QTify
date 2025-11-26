@@ -14,11 +14,18 @@ function App() {
       <Section
         title="Top Albums"
         fetchUrl="https://qtify-backend.labs.crio.do/albums/top"
+        type="album"
       />
 
       <Section
         title="New Albums"
         fetchUrl="https://qtify-backend.labs.crio.do/albums/new"
+        type="album"
+      />
+      <Section
+        title="Songs"
+        fetchUrl="https://qtify-backend.labs.crio.do/songs"
+        type="song"
       />
     </div>
   );

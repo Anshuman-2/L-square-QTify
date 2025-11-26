@@ -36,3 +36,20 @@
   flex-wrap: wrap;
   gap: 24px;
 }
+.tabs {
+  margin-bottom: 20px;
+  border-bottom: none !important; /* remove default underline */
+}
+
+.tabItem {
+  color: white !important;
+  text-transform: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 400; /* normal */
+}
+
+.tabItemActive {
+  color: #34c94b !important; /* active tab = green */
+  font-weight: 600 !important; /* bold */
+}
