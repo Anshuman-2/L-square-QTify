@@ -1,9 +1,38 @@
 .hero {
-  background-color: var(--color-black);
-  height: 270px;
+  width: 100%;
+  background-color: #000000;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 30px;
+  justify-content: space-between;
+  align-items: center;       /* vertically center text + image */
+  padding: 40px 80px;        /* adjust to taste / Figma */
+  box-sizing: border-box;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.content h1,
+.content h2 {
+  margin: 0;
+  color: #ffffff;            /* IMPORTANT: white text on black */
+  font-family: "Poppins", sans-serif;
+}
+
+.content h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.content h2 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.imageWrapper img {
+  max-width: 220px;          /* or whatever matches Figma */
+  height: auto;
+  display: block;
 }
