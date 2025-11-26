@@ -4,12 +4,11 @@
   box-sizing: border-box;
 }
 
-/* Top row: "Top Albums" on left, "Collapse" button on right */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between; /* horizontal spacing */
-  margin-bottom: 16px;            /* vertical spacing from grid */
+  margin-bottom: 16px;            /* vertical spacing to grid/carousel */
 }
 
 .title {
@@ -30,10 +29,8 @@
   cursor: pointer;
 }
 
-/* Grid of cards */
 .grid {
-  display: flex;       /* or display: grid; both OK */
+  display: flex;
   flex-wrap: wrap;
-  gap: 24px;           /* space between cards */
+  gap: 24px;
 }
-    

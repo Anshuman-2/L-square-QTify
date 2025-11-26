@@ -1,0 +1,34 @@
+/* src/components/Carousel/Carousel.module.css */
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.swiper {
+  padding: 16px 0;
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+}
+
+/* Navigation buttons */
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}

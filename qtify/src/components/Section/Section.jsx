@@ -1,19 +1,18 @@
+// src/components/Section/Section.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./Section.module.css";
 import Card from "../Card/Card";
+import Carousel from "../Carousel/Carousel";
 
 const Section = ({ title, fetchUrl }) => {
   const [albums, setAlbums] = useState([]);
-  const [collapsed, setCollapsed] = useState(false);
+  const [showCarousel, setShowCarousel] = useState(false);
 
   useEffect(() => {
-    console.log("Fetching API..."); // <-- ADD THIS
-
     const getAlbums = async () => {
       try {
         const { data } = await axios.get(fetchUrl);
-        console.log("API Response:", data); // <-- ADD THIS
         setAlbums(data);
       } catch (e) {
         console.error("Error fetching albums:", e);
@@ -22,8 +21,6 @@ const Section = ({ title, fetchUrl }) => {
 
     getAlbums();
   }, [fetchUrl]);
-
-  const displayedAlbums = collapsed ? albums.slice(0, 6) : albums;
 
   return (
     <section className={styles.section}>
@@ -34,23 +31,36 @@ const Section = ({ title, fetchUrl }) => {
         <button
           type="button"
           className={styles.collapseButton}
-          onClick={() => setCollapsed((prev) => !prev)}
+          onClick={() => setShowCarousel((prev) => !prev)}
         >
-          {collapsed ? "Show All" : "Collapse"}
+          {showCarousel ? "Show All" : "Collapse"}
         </button>
       </div>
 
-      {/* Grid of cards */}
-      <div className={styles.grid}>
-        {displayedAlbums.map((album) => (
-          <Card
-            key={album.id}
-            image={album.image}
-            title={album.title}
-            follows={album.follows}
-          />
-        ))}
-      </div>
+      {/* Conditional rendering: Grid vs Carousel */}
+      {showCarousel ? (
+        <Carousel
+          items={albums}
+          renderItem={(album) => (
+            <Card
+              image={album.image}
+              title={album.title}
+              follows={album.follows}
+            />
+          )}
+        />
+      ) : (
+        <div className={styles.grid}>
+          {albums.map((album) => (
+            <Card
+              key={album.id}
+              image={album.image}
+              title={album.title}
+              follows={album.follows}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 };
